@@ -1,20 +1,24 @@
-import { send, faviconUrl, authErrorText } from './lib/ui.js';
+import { send, authErrorText } from './lib/ui.js';
 
 const $ = sel => document.querySelector(sel);
 
 // 两种入口：
 //   #https://example.com/...   → 网页锁
 //   #vault=<folderId>          → 文件夹保险箱（书签已被搬走，等着放回去）
-const hash = (location.hash || '').slice(1);
+// 读到之后立刻把 hash 抹掉：地址栏、历史记录里都不该留下目标网址。
+let hash = (location.hash || '').slice(1);
+if (hash) {
+  try { sessionStorage.setItem('wl-target', hash); } catch { }
+  try { history.replaceState(null, '', location.pathname); } catch { }
+} else {
+  try { hash = sessionStorage.getItem('wl-target') || ''; } catch { hash = ''; }
+}
+
 const isVault = hash.startsWith('vault=');
 const folderId = isVault ? hash.slice('vault='.length) : '';
 const target = isVault ? '' : hash;
 
 let lockTimer = null;
-
-function hostOf(url) {
-  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; }
-}
 
 function showError(text) {
   $('#err').textContent = text || '';
@@ -105,21 +109,18 @@ function showVaultResult(res) {
 /* ------------------------------------------------------------------ 网页锁 */
 
 function initWeb() {
+  // 锁屏页不留任何目标网址的痕迹：域名、完整链接、favicon 全都不显示
+  const siteBox = document.querySelector('.wl-lock-site');
+  if (siteBox) siteBox.hidden = true;
+  const form = document.querySelector('.wl-lock-form');
+  if (form) form.style.marginTop = '26px';
+  document.title = '网页已锁定';
+
   if (!/^https?:/i.test(target)) {
-    $('#site-host').textContent = '地址无效';
-    $('#site-url').textContent = '';
     $('#btn-unlock').disabled = true;
-    showError('没有拿到要打开的地址，可能是直接打开了这个页面。');
+    showError('没有拿到要打开的地址，请重新点一次那个书签。');
     return;
   }
-
-  $('#site-host').textContent = hostOf(target);
-  $('#site-url').textContent = target;
-  document.title = '已锁定 · ' + hostOf(target);
-
-  const fav = $('#site-fav');
-  fav.src = faviconUrl(target, 64);
-  fav.addEventListener('error', () => { fav.style.visibility = 'hidden'; });
 
   $('#pw').focus();
 }

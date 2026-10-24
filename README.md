@@ -178,6 +178,9 @@ web locker/
   `chrome-extension://…/lock.html#<原始URL>`。不用内容脚本，页面不会先闪一下。
 - **放行**：验证通过后临时加一条高优先级 `allow` 规则（只对该 origin），`chrome.tabs.update`
   跳回原地址；`webNavigation.onCommitted` 提交后立即回收（开了免密就按时长回收，用 `alarms` 兜底）。
+- **锁屏页不留痕迹**：网页模式下不显示域名、完整链接和 favicon，标签页标题固定为「网页已锁定」；
+  页面一加载就把 `location.hash`（里面是原始网址）读进 `sessionStorage` 并用 `history.replaceState`
+  抹掉，所以地址栏和浏览历史里都看不到目标网址。
 - **文件夹锁**：只存 `folderId`，每次重建时用 `chrome.bookmarks.getChildren` 递归展开成多条规则；
   `onCreated / onRemoved / onChanged / onMoved` 触发防抖重建。
 - **文件夹保险箱**：`chrome.bookmarks.move` 把子节点整体搬进 `其他收藏夹/已上锁/[id] 名称`，
