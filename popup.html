@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>网页锁</title>
+  <link rel="stylesheet" href="assets/smartisan.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body class="s-page wl-popup">
+
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="si-lock" viewBox="0 0 24 24" fill="none">
+    <path d="M7.4 10V7.6C7.4 5.06 9.46 3 12 3C14.54 3 16.6 5.06 16.6 7.6V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <rect x="4.6" y="10" width="14.8" height="11.4" rx="3.4" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="15.2" r="1.5" fill="currentColor"/>
+    <path d="M12 16.6V18.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="si-lock-open" viewBox="0 0 24 24" fill="none">
+    <path d="M7.4 10V7.6C7.4 5.06 9.46 3 12 3C14.24 3 16.1 4.6 16.5 6.72" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <rect x="4.6" y="10" width="14.8" height="11.4" rx="3.4" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="15.2" r="1.5" fill="currentColor"/>
+    <path d="M12 16.6V18.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="si-folder" viewBox="0 0 24 24" fill="none">
+    <path d="M3.2 7.4C3.2 6.5 3.9 5.8 4.8 5.8H9.1L11 8.1H19.2C20.1 8.1 20.8 8.8 20.8 9.7V17.6C20.8 18.5 20.1 19.2 19.2 19.2H4.8C3.9 19.2 3.2 18.5 3.2 17.6V7.4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="si-chevron-right" viewBox="0 0 24 24" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7709 11.4598C14.9176 11.6006 15 11.7916 15 11.9908C15 12.1899 14.9176 12.3809 14.7709 12.5218L10.3451 16.7707C10.2729 16.8424 10.1866 16.8997 10.0912 16.939C9.9957 16.9784 9.89304 16.9991 9.78916 17C9.68528 17.0008 9.58226 16.9818 9.48611 16.9441C9.38996 16.9063 9.30261 16.8505 9.22915 16.78C9.15569 16.7095 9.0976 16.6256 9.05826 16.5333C9.01892 16.441 8.99913 16.3421 9.00003 16.2424C9.00093 16.1427 9.02251 16.0441 9.06352 15.9525C9.10452 15.8608 9.16412 15.7779 9.23885 15.7087L13.1115 11.9908L9.23885 8.27288C9.09633 8.13122 9.01747 7.9415 9.01926 7.74456C9.02104 7.54763 9.10332 7.35925 9.24838 7.21999C9.39343 7.08073 9.58966 7.00174 9.79479 7.00003C9.99993 6.99832 10.1976 7.07402 10.3451 7.21084L14.7709 11.4598Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="si-setting" viewBox="0 0 20 20" fill="none">
+    <path d="M15.2859 6.32125C15.8169 7.08256 16.1764 7.95002 16.3396 8.86376H18.3334V11.1363H16.3396C16.1764 12.05 15.8169 12.9174 15.2859 13.6788L16.6963 15.0892L15.0892 16.6963L13.6788 15.2858C12.9175 15.8168 12.05 16.1764 11.1363 16.3396V18.3333H8.86377V16.3396C7.95003 16.1764 7.08258 15.8168 6.32127 15.2858L4.91085 16.6963L3.30377 15.0892L4.71419 13.6788C4.18318 12.9174 3.82366 12.05 3.66044 11.1363H1.66669V8.86376H3.66044C3.82366 7.95002 4.18318 7.08256 4.71419 6.32125L3.30377 4.91084L4.91085 3.30376L6.32127 4.71417C7.08258 4.18316 7.95003 3.82364 8.86377 3.66042V1.66667H11.1363V3.66042C12.05 3.82364 12.9175 4.18316 13.6788 4.71417L15.0892 3.30376L16.6963 4.91084L15.2859 6.32125Z M10 4.92A5.08 5.08 0 1 0 10 15.08A5.08 5.08 0 1 0 10 4.92Z" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="si-star" viewBox="0 0 24 24" fill="none">
+    <path d="M9.48 16.4842L12 14.8842L14.52 16.5053L13.86 13.4737L16.08 11.4526L13.16 11.1789L12 8.31579L10.84 11.1579L7.92 11.4316L10.14 13.4737L9.48 16.4842ZM7.06 20L8.36 14.0842L4 10.1053L9.76 9.57895L12 4L14.24 9.57895L20 10.1053L15.64 14.0842L16.94 20L12 16.8632L7.06 20Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<header class="s-appbar s-appbar--shadow">
+  <div class="s-appbar__title">网页锁</div>
+  <div class="s-appbar__spacer"></div>
+  <div class="s-appbar__actions">
+    <button id="btn-lock-now" title="立即上锁" aria-label="立即上锁" hidden>
+      <svg class="s-icon s-icon--20"><use href="#si-lock"/></svg>
+    </button>
+    <button id="btn-settings" title="管理" aria-label="管理">
+      <svg class="s-icon s-icon--20"><use href="#si-setting"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="wl-popup__body">
+
+  <!-- ============ 打开扩展先验密码 ============ -->
+  <section id="view-lock">
+    <div class="wl-lock-badge" style="margin-top:18px">
+      <svg class="s-icon"><use href="#si-lock"/></svg>
+    </div>
+    <h2 class="wl-lock-title" style="font-size:17px;margin-top:16px">扩展已上锁</h2>
+    <p class="wl-lead" style="margin:6px 0 16px">输入密码才能查看和管理锁定项</p>
+    <input class="s-textfield" type="password" id="lock-pw" placeholder="密码" autocomplete="current-password" />
+    <p class="wl-error" id="lock-err"></p>
+    <button class="s-btn s-btn--block" id="btn-unlock-popup">解锁</button>
+    <p class="wl-hint wl-hint--center">和打开被锁网页时用的是同一个密码</p>
+  </section>
+
+  <!-- ============ 首次使用 ============ -->
+  <section id="view-setup" hidden>
+    <div class="wl-lock-badge" style="margin-top:14px">
+      <svg class="s-icon"><use href="#si-lock"/></svg>
+    </div>
+    <p class="wl-lead">先设一个密码。<br>之后打开被锁的网页，都要先输它。</p>
+    <input class="s-textfield" type="password" id="setup-pw1" placeholder="设置密码（至少 4 位）" autocomplete="new-password" />
+    <input class="s-textfield wl-mt8" type="password" id="setup-pw2" placeholder="再输一次" autocomplete="new-password" />
+    <p class="wl-error" id="setup-err"></p>
+    <button class="s-btn s-btn--block wl-mt12" id="btn-setup">设置密码</button>
+    <p class="wl-hint wl-hint--center">密码只保存在本机，忘记后只能重装扩展。</p>
+  </section>
+
+  <!-- ============ 主界面 ============ -->
+  <section id="view-main" hidden>
+    <div class="s-list-group">
+      <div class="s-list-group__header">当前网页</div>
+      <ul class="s-list">
+        <li class="s-list-item">
+          <img class="wl-favicon" id="cur-fav" alt="" />
+          <div class="s-list-item__text">
+            <div class="s-list-item__title wl-ellipsis" id="cur-title">—</div>
+            <div class="s-list-item__subtitle wl-ellipsis" id="cur-host">—</div>
+          </div>
+          <span class="s-chip s-chip--grey" id="cur-state">未锁</span>
+        </li>
+      </ul>
+    </div>
+    <button class="s-btn s-btn--block wl-mt12" id="btn-add">锁定此网页</button>
+
+    <div class="s-list-group wl-mt20">
+      <div class="s-list-group__header">已加锁</div>
+      <ul class="s-list" id="lock-list"></ul>
+      <div id="lock-empty" class="wl-empty" hidden>
+        <svg class="s-icon"><use href="#si-star"/></svg>
+        <div class="wl-empty__title">还没锁任何东西</div>
+        <div class="wl-empty__desc">在下面打开管理页，<br>从收藏夹里挑网页或整个文件夹上锁。</div>
+      </div>
+      <p class="wl-hint wl-hint--center" id="lock-desc"></p>
+    </div>
+
+    <button class="s-btn s-btn--outline s-btn--block wl-mt16" id="btn-manage">打开管理页</button>
+  </section>
+
+  <!-- ============ 锁定当前网页 ============ -->
+  <section id="view-add" hidden>
+    <button class="s-btn s-btn--text" id="btn-add-back" style="margin-bottom:10px">← 返回</button>
+    <div class="s-list-group">
+      <div class="s-list-group__header">要锁的地址</div>
+      <ul class="s-list">
+        <li class="s-list-item">
+          <img class="wl-favicon" id="add-fav" alt="" />
+          <div class="s-list-item__text">
+            <div class="s-list-item__title wl-ellipsis" id="add-title">—</div>
+            <div class="s-list-item__subtitle wl-ellipsis" id="add-url">—</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="s-list-group wl-mt20">
+      <div class="s-list-group__header">锁定范围</div>
+      <div class="wl-choices" id="mode-choices">
+        <button class="wl-choice is-on" data-mode="domain">整个网站</button>
+        <button class="wl-choice" data-mode="prefix">此地址开头</button>
+        <button class="wl-choice" data-mode="exact">仅这一个地址</button>
+      </div>
+      <p class="wl-hint" id="mode-hint">该站点的所有页面都会上锁。</p>
+    </div>
+
+    <div class="wl-mt20" id="add-pw-wrap">
+      <input class="s-textfield" type="password" id="add-pw" placeholder="输入密码确认" autocomplete="current-password" />
+    </div>
+    <p class="wl-error" id="add-err"></p>
+    <button class="s-btn s-btn--block wl-mt8" id="btn-add-confirm">确认上锁</button>
+  </section>
+
+</main>
+
+<script src="assets/smartisan.js" defer></script>
+<script type="module" src="popup.js"></script>
+</body>
+</html>

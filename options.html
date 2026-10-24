@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>网页锁 · 管理</title>
+  <link rel="stylesheet" href="assets/smartisan.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+  <style>
+    body { background: var(--s-page-texture); }
+  </style>
+</head>
+<body class="s-page s-page--textured">
+
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="si-lock" viewBox="0 0 24 24" fill="none">
+    <path d="M7.4 10V7.6C7.4 5.06 9.46 3 12 3C14.54 3 16.6 5.06 16.6 7.6V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <rect x="4.6" y="10" width="14.8" height="11.4" rx="3.4" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="15.2" r="1.5" fill="currentColor"/>
+    <path d="M12 16.6V18.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="si-lock-open" viewBox="0 0 24 24" fill="none">
+    <path d="M7.4 10V7.6C7.4 5.06 9.46 3 12 3C14.24 3 16.1 4.6 16.5 6.72" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <rect x="4.6" y="10" width="14.8" height="11.4" rx="3.4" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="15.2" r="1.5" fill="currentColor"/>
+    <path d="M12 16.6V18.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="si-folder" viewBox="0 0 24 24" fill="none">
+    <path d="M3.2 7.4C3.2 6.5 3.9 5.8 4.8 5.8H9.1L11 8.1H19.2C20.1 8.1 20.8 8.8 20.8 9.7V17.6C20.8 18.5 20.1 19.2 19.2 19.2H4.8C3.9 19.2 3.2 18.5 3.2 17.6V7.4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="si-chevron-right" viewBox="0 0 24 24" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7709 11.4598C14.9176 11.6006 15 11.7916 15 11.9908C15 12.1899 14.9176 12.3809 14.7709 12.5218L10.3451 16.7707C10.2729 16.8424 10.1866 16.8997 10.0912 16.939C9.9957 16.9784 9.89304 16.9991 9.78916 17C9.68528 17.0008 9.58226 16.9818 9.48611 16.9441C9.38996 16.9063 9.30261 16.8505 9.22915 16.78C9.15569 16.7095 9.0976 16.6256 9.05826 16.5333C9.01892 16.441 8.99913 16.3421 9.00003 16.2424C9.00093 16.1427 9.02251 16.0441 9.06352 15.9525C9.10452 15.8608 9.16412 15.7779 9.23885 15.7087L13.1115 11.9908L9.23885 8.27288C9.09633 8.13122 9.01747 7.9415 9.01926 7.74456C9.02104 7.54763 9.10332 7.35925 9.24838 7.21999C9.39343 7.08073 9.58966 7.00174 9.79479 7.00003C9.99993 6.99832 10.1976 7.07402 10.3451 7.21084L14.7709 11.4598Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="si-chevron-down" viewBox="0 0 10 10" fill="none">
+    <path d="M1.25 3.33333L5 6.875L8.75 3.33333" stroke="currentColor" stroke-width="2"/>
+  </symbol>
+  <symbol id="si-close" viewBox="0 0 24 24" fill="none">
+    <path d="M6.86667 5L5 6.86667L10.1333 12L5 17.1333L6.86667 19L12 13.8667L17.1333 19L19 17.1333L13.8667 12L19 6.86667L17.1333 5L12 10.1333L6.86667 5Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="si-setting" viewBox="0 0 20 20" fill="none">
+    <path d="M15.2859 6.32125C15.8169 7.08256 16.1764 7.95002 16.3396 8.86376H18.3334V11.1363H16.3396C16.1764 12.05 15.8169 12.9174 15.2859 13.6788L16.6963 15.0892L15.0892 16.6963L13.6788 15.2858C12.9175 15.8168 12.05 16.1764 11.1363 16.3396V18.3333H8.86377V16.3396C7.95003 16.1764 7.08258 15.8168 6.32127 15.2858L4.91085 16.6963L3.30377 15.0892L4.71419 13.6788C4.18318 12.9174 3.82366 12.05 3.66044 11.1363H1.66669V8.86376H3.66044C3.82366 7.95002 4.18318 7.08256 4.71419 6.32125L3.30377 4.91084L4.91085 3.30376L6.32127 4.71417C7.08258 4.18316 7.95003 3.82364 8.86377 3.66042V1.66667H11.1363V3.66042C12.05 3.82364 12.9175 4.18316 13.6788 4.71417L15.0892 3.30376L16.6963 4.91084L15.2859 6.32125Z M10 4.92A5.08 5.08 0 1 0 10 15.08A5.08 5.08 0 1 0 10 4.92Z" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="si-star" viewBox="0 0 24 24" fill="none">
+    <path d="M9.48 16.4842L12 14.8842L14.52 16.5053L13.86 13.4737L16.08 11.4526L13.16 11.1789L12 8.31579L10.84 11.1579L7.92 11.4316L10.14 13.4737L9.48 16.4842ZM7.06 20L8.36 14.0842L4 10.1053L9.76 9.57895L12 4L14.24 9.57895L20 10.1053L15.64 14.0842L16.94 20L12 16.8632L7.06 20Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="si-search" viewBox="0 0 16 16" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4723 10.3107C12.07 9.45225 12.4211 8.40513 12.4211 7.275C12.4211 4.3617 10.0882 2 7.21053 2C4.33283 2 2 4.3617 2 7.275C2 10.1883 4.33283 12.55 7.21053 12.55C8.40215 12.55 9.50035 12.145 10.3782 11.4636L12.3184 13.4279C12.6294 13.7427 13.1377 13.7427 13.4486 13.4279C13.7542 13.1185 13.7542 12.6209 13.4486 12.3115L11.4723 10.3107ZM7.21053 10.9857C5.18622 10.9857 3.5452 9.32436 3.5452 7.275C3.5452 5.22565 5.18622 3.56432 7.21053 3.56432C9.23483 3.56432 10.8759 5.22565 10.8759 7.275C10.8759 9.32436 9.23483 10.9857 7.21053 10.9857Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<header class="s-appbar s-appbar--shadow wl-appbar">
+  <div class="s-appbar__title">网页锁</div>
+  <div class="s-appbar__spacer"></div>
+  <div class="s-appbar__actions">
+    <button id="btn-relock" class="s-btn s-btn--outline" title="重新上锁管理界面">锁定管理</button>
+  </div>
+</header>
+
+<div class="wl-container">
+
+  <div class="s-segmented s-segmented--fill wl-tabs" id="tabs">
+    <button data-pane="locks" aria-pressed="true"><span>锁定清单</span></button>
+    <button data-pane="marks"><span>收藏夹</span></button>
+    <button data-pane="settings"><span>设置</span></button>
+  </div>
+
+  <!-- ================= 锁定清单 ================= -->
+  <section id="pane-locks">
+    <div class="s-list-group wl-mt20">
+      <div class="s-list-group__header">已经锁上的</div>
+      <ul class="s-list" id="lock-list"></ul>
+      <div class="wl-empty" id="lock-empty" hidden>
+        <svg class="s-icon"><use href="#si-star"/></svg>
+        <div class="wl-empty__title">还没有锁定任何网页</div>
+        <div class="wl-empty__desc">切到「收藏夹」，<br>给某个网页或整个文件夹上锁。</div>
+      </div>
+      <p class="wl-hint wl-hint--center" id="lock-hint"></p>
+    </div>
+  </section>
+
+  <!-- ================= 收藏夹 ================= -->
+  <section id="pane-marks" hidden>
+    <div class="s-search wl-mt16" style="border-radius:10px;border:var(--s-hair) solid var(--s-border-list);box-shadow:var(--s-shadow-card-sm)">
+      <div class="s-search-field">
+        <svg class="s-icon s-icon--16" style="color:var(--s-icon-chevron)"><use href="#si-search"/></svg>
+        <input id="mark-filter" placeholder="搜索收藏夹里的网页" />
+      </div>
+    </div>
+    <div class="s-list-group wl-mt16">
+      <div class="s-list-group__header">收藏夹</div>
+      <ul class="s-list" id="marks-tree"></ul>
+      <p class="wl-hint">
+        点文件夹右侧的锁，整个文件夹一起上锁，之后往里面加的新书签也自动受保护。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 设置 ================= -->
+  <section id="pane-settings" hidden>
+    <div class="s-list-group wl-mt20">
+      <div class="s-list-group__header">安全</div>
+      <ul class="s-list">
+        <li class="s-list-item" data-pressable id="row-change-pw">
+          <svg class="s-icon"><use href="#si-lock"/></svg>
+          <div class="s-list-item__text"><div class="s-list-item__title">修改密码</div></div>
+          <div class="s-list-item__detail"><svg class="s-icon s-icon--16"><use href="#si-chevron-right"/></svg></div>
+        </li>
+        <li class="s-list-item" data-pressable id="row-grace">
+          <svg class="s-icon"><use href="#si-lock-open"/></svg>
+          <div class="s-list-item__text"><div class="s-list-item__title">解锁后免密</div></div>
+          <div class="s-list-item__detail"><span id="grace-val">每次都要输</span><svg class="s-icon s-icon--16"><use href="#si-chevron-right"/></svg></div>
+        </li>
+        <li class="s-list-item">
+          <svg class="s-icon"><use href="#si-setting"/></svg>
+          <div class="s-list-item__text"><div class="s-list-item__title">图标上显示已锁数量</div></div>
+          <input type="checkbox" class="s-switch" id="sw-badge" />
+        </li>
+      </ul>
+      <p class="wl-hint">密码只保存在本机浏览器里，用 PBKDF2 加盐哈希存储，无法还原成明文。</p>
+    </div>
+
+    <div class="s-list-group wl-mt24">
+      <div class="s-list-group__header">卸载保护</div>
+      <div class="wl-note" id="uninstall-note">
+        <div class="wl-note__row">
+          <svg class="s-icon" style="color:#929292"><use href="#si-lock-open"/></svg>
+          <div>
+            <div class="wl-note__title">已开启密码门</div>
+            <div class="wl-note__desc">要在这里停用保护、解除锁定、清空数据，都得先输密码。</div>
+          </div>
+        </div>
+        <div class="wl-note__row">
+          <svg class="s-icon" style="color:#cd9143"><use href="#si-chevron-right"/></svg>
+          <div>
+            <div class="wl-note__title">浏览器本身的限制</div>
+            <div class="wl-note__desc">
+              Edge 不允许任何扩展阻止自己从「扩展管理页」被移除，这是浏览器的安全底线。
+              所以真正去那儿点“删除”是拦不住的 —— 但删掉之后，浏览器里的锁定清单与密码会一起消失，
+              重装扩展也恢复不回来，等于所有锁都要重新设一遍。
+            </div>
+          </div>
+        </div>
+        <div class="wl-note__row">
+          <svg class="s-icon" style="color:#cd9143"><use href="#si-chevron-right"/></svg>
+          <div>
+            <div class="wl-note__title">想更彻底？</div>
+            <div class="wl-note__desc">
+              在 Edge 设置里开启「开发人员模式」以外，也可以给这个 Edge 配置加一个系统级密码（Windows 用户账户密码），
+              让别人根本进不了你的浏览器。这比任何扩展都可靠。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-list-group wl-mt24">
+      <div class="s-list-group__header">危险操作</div>
+      <ul class="s-list">
+        <li class="s-list-item" data-pressable id="row-reset">
+          <div class="s-list-item__text">
+            <div class="s-list-item__title" style="color:#cc3e39">清空全部锁定</div>
+            <div class="s-list-item__subtitle">锁定清单会被清空，密码保留</div>
+          </div>
+        </li>
+        <li class="s-list-item" data-pressable id="row-forget">
+          <div class="s-list-item__text">
+            <div class="s-list-item__title">忘记密码</div>
+            <div class="s-list-item__subtitle">只能重装扩展，数据一起清掉</div>
+          </div>
+        </li>
+      </ul>
+      <p class="wl-hint wl-hint--center" id="stats-line"></p>
+    </div>
+  </section>
+
+</div>
+
+<!-- 未验证密码时盖住整个管理区 -->
+<div class="wl-gate" id="gate" hidden>
+  <svg class="s-icon"><use href="#si-lock"/></svg>
+  <div class="wl-gate__title">管理界面已上锁</div>
+  <div class="wl-gate__desc">输入密码后<br>才能查看锁定清单和收藏夹</div>
+  <button class="s-btn" id="btn-gate-open" style="margin-top:20px;height:44px;min-width:168px">输入密码</button>
+</div>
+
+<script src="assets/smartisan.js" defer></script>
+<script type="module" src="options.js"></script>
+</body>
+</html>
